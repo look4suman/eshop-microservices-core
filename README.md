@@ -1,4 +1,4 @@
-Catalog Microservices -
+Catalog Microservices - vertical clice architecture
 
 1. MediatR for CQRS
 2. Carter for API Endpoints - routing and handling http requests
