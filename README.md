@@ -1,8 +1,8 @@
 docker cleanup commands --> 
-docker compose down -v
-docker container prune -f
-docker image prune -f
-docker compose up --build -d
+a. docker compose down -v
+b. docker container prune -f
+c. docker image prune -f
+d. docker compose up --build -d
 
 Catalog Microservices - vertical clice architecture
 
