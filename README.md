@@ -1,3 +1,9 @@
+docker cleanup commands --> 
+a. docker compose down -v
+b. docker container prune -f
+c. docker image prune -f
+d. docker compose up --build -d
+
 Catalog Microservices - vertical clice architecture
 
 1. MediatR for CQRS
