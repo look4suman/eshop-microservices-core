@@ -11,6 +11,11 @@ builder.Services.AddMarten(opts =>
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
 }).UseLightweightSessions();
 
+// dummy code to test
+var csb = new Npgsql.NpgsqlConnectionStringBuilder(
+    builder.Configuration.GetConnectionString("Database")
+);
+
 var app = builder.Build();
 
 // configure the http request pipeline
