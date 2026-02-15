@@ -1,7 +1,30 @@
 services:
   catalogapi:
     ports:
-      - "8080:8080"
+      - "6000:8080"
+      - "6060:8081"
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_HTTP_PORTS: "8080"
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Host=host.docker.internal;Port=5432;Database=CatalogDb;Username=catalog_user;Password=catalog_pwd;SSL Mode=Disable
+      - GrpcSettings__DiscountUrl=https://discount.grpc:8081
+    depends_on:
+      - discount.grpc
+  discount.grpc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Data Source=/data/discountdb
+    ports:
+      - "6002:8080"
+      - "6062:8081"
+    volumes:
+      - discount_data:/data
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+volumes:
+  discount_data:

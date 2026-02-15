@@ -6,3 +6,9 @@ services:
       dockerfile: Services/Catalog/CatalogAPI/Dockerfile
     ports:
       - "8080:8080"
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
+
